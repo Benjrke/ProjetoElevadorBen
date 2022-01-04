@@ -9,10 +9,7 @@ namespace ProjetoElevador
         {
             Elevador elevador = new Elevador();
 
-            Console.WriteLine("Olá, Seja bem vindo!!!");
-            Console.WriteLine("=======================");
-            Console.WriteLine("Quantos andares terá o edifício?");
-            int qtd_Andares = int.Parse(Console.ReadLine());
+            elevador.Inicializar();
 
             Console.WriteLine(@"Deseja entrar no Elevador:
                     1 - Sim
@@ -20,13 +17,34 @@ namespace ProjetoElevador
                             ");
             int escolha1 = int.Parse(Console.ReadLine());
 
-            switch (escolha1)
+            if (escolha1 == 1)
             {
-                case 1: elevador.Entrar(); break;
-                case 2: Console.WriteLine("---Volte Sempre---");break;            
-                default:
-                    break;
+                elevador.Entrar();
+
             }
+            else if (escolha1 == 2)
+            {
+                Console.WriteLine("---Volte Sempre---");
+                return;
+            }
+            else
+            {
+                while (escolha1 != 1)
+
+                {
+                    Console.WriteLine("Escolha ivalida, digite 1 ou 2");
+                    escolha1 = int.Parse(Console.ReadLine());
+
+                    if (escolha1 == 2)
+                    {
+                        Console.WriteLine("---Volte Sempre---");
+                        return;
+                    }
+
+                }
+                elevador.Entrar();
+            }
+
 
             Console.WriteLine(@"Escolha uma Opção:
                     1 - Subir
@@ -35,16 +53,47 @@ namespace ProjetoElevador
                                 ");
             int escolha2 = int.Parse(Console.ReadLine());
 
-            switch (escolha2)
+            if (escolha2 == 1)
             {
-                case 1: elevador.Subir(); break;
-                case 2: elevador.Descer(); break;
-                case 3: elevador.
-               
-                default:
-                    break;
+                elevador.Subir();
+            }
+            else if (escolha2 == 2)
+            {
+                elevador.Descer();
+            }
+            else if (escolha2 == 3)
+            {
+                elevador.Sair();
+            }
+            else
+            {
+                while (escolha2 != 1)
+
+                {
+                    Console.WriteLine("Escolha ivalida, digite 1 (Subir), 2 (Descer) ou 3 (Sair)");
+                    escolha2 = int.Parse(Console.ReadLine());
+                    
+
+                    if (escolha2 == 1)
+                    {
+                        elevador.Subir();
+                    }
+                    else if (escolha2 == 2)
+                    {
+                        elevador.Descer();
+                        return;
+                    }
+                    else if (escolha2 == 3)
+                    {
+                        elevador.Sair();
+                        escolha2 = 1;
+                    }
+
+                }
             }
 
         }
+
     }
+
 }
