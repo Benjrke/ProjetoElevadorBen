@@ -5,92 +5,70 @@ namespace ProjetoElevador
 {
     internal class Program
     {
+
         static void Main(string[] args)
         {
             Elevador elevador = new Elevador();
 
             elevador.Inicializar();
+            int result = 0;// variavel para ser tratada no metodo sair
 
+        parada1:// Rótulo para condicação de salto da função goto, caso a escolha seja um numero inválido.
             Console.WriteLine(@"Deseja entrar no Elevador:
                     1 - Sim
                     2 - Não
                             ");
+
             int escolha1 = int.Parse(Console.ReadLine());
+            Console.Clear();
 
-            if (escolha1 == 1)
+
+            switch (escolha1)
             {
-                elevador.Entrar();
+                case 1: elevador.Entrar(); break;
+                case 2:
+                    Console.WriteLine("---Volte Sempre---");
+                    Environment.Exit(escolha1);
+                        break;
+                default:
+                    Console.WriteLine("==Escolha Inválida==");
+                    goto parada1;
 
-            }
-            else if (escolha1 == 2)
-            {
-                Console.WriteLine("---Volte Sempre---");
-                return;
-            }
-            else
-            {
-                while (escolha1 != 1)
-
-                {
-                    Console.WriteLine("Escolha ivalida, digite 1 ou 2");
-                    escolha1 = int.Parse(Console.ReadLine());
-
-                    if (escolha1 == 2)
-                    {
-                        Console.WriteLine("---Volte Sempre---");
-                        return;
-                    }
-
-                }
-                elevador.Entrar();
             }
 
 
+        parada2:// Rótulo para condicação de salto da função goto, caso a escolha seja um numero inválido.
             Console.WriteLine(@"Escolha uma Opção:
                     1 - Subir
                     2 - Descer
                     3 - Sair
                                 ");
             int escolha2 = int.Parse(Console.ReadLine());
+            Console.Clear();
 
-            if (escolha2 == 1)
+            switch (escolha2)
             {
-                elevador.Subir();
-            }
-            else if (escolha2 == 2)
-            {
-                elevador.Descer();
-            }
-            else if (escolha2 == 3)
-            {
-                elevador.Sair();
-            }
-            else
-            {
-                while (escolha2 != 1)
+                case 1: elevador.Subir(); break;
+                case 2: elevador.Descer(); break;
+                case 3:
+                    elevador.Sair(result);
+                    result = elevador.Sair(result);
 
-                {
-                    Console.WriteLine("Escolha ivalida, digite 1 (Subir), 2 (Descer) ou 3 (Sair)");
-                    escolha2 = int.Parse(Console.ReadLine());
-                    
-
-                    if (escolha2 == 1)
+                    if (result == 1)
                     {
-                        elevador.Subir();
+                        goto parada2;
                     }
-                    else if (escolha2 == 2)
+                    if (result == 2)
                     {
-                        elevador.Descer();
-                        return;
-                    }
-                    else if (escolha2 == 3)
-                    {
-                        elevador.Sair();
-                        escolha2 = 1;
-                    }
+                        Environment.Exit(escolha2);
 
-                }
+                    }; break;
+                default:
+                    Console.WriteLine("==Escolha Inválida==");
+                    goto parada2;
             }
+
+            goto parada2;// rotuulo para o salto para a linha 40
 
         }
 
