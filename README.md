@@ -1,5 +1,5 @@
-# ProjetoElevadorBen
-Projeto Final do Curso da Jornada Microsoft Dev ocean
+# Projeto Final do Curso da Jornada Microsoft Dev na Ocean
+
 -Projetar Um Elevador de acordo com as seguintes Especificações:
 
 -**INSTRUÇÕES**
